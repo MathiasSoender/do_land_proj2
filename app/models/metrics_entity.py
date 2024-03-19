@@ -1,7 +1,16 @@
-
 # metric_id has also been added as index for fast retrievals.
 class MetricEntity:
-    def __init__(self, metric_id, metric_name, metric_unit, metric_type, metric_equation, updated, _id=None) -> None:
+
+    def __init__(
+        self,
+        metric_id,
+        metric_name,
+        metric_unit,
+        metric_type,
+        metric_equation,
+        updated,
+        _id="",
+    ) -> None:
         self.metric_id = metric_id
         self.metric_name = metric_name
         self.metric_unit = metric_unit

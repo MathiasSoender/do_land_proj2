@@ -2,7 +2,7 @@ from base64 import b64encode
 import requests
 import sys
 from error_handling.DoLand_exceptions import MatterAPIException
-from secrets_fetch import get_Matter_client_id, get_Matter_client_secret
+from utils.secrets_fetch import get_Matter_client_id, get_Matter_client_secret
 from datetime import datetime, timedelta
 
 
@@ -21,7 +21,7 @@ class MatterRequester:
         }
 
     def check_req(self, res:requests.Response, err_msg):
-        if res.status_code <= 400:
+        if res.status_code >= 400:
             raise MatterAPIException(err_msg)
 
     def authenticate_if_needed(self) -> None:
@@ -47,20 +47,16 @@ class MatterRequester:
             headers=self.token_header,
             data=portfolio_data)
         
-        self.check_req(f"Could not upload portfolio, err: {res.text}")
+        self.check_req(res, f"Could not upload portfolio, err: {res.text}")
 
 
     def get_analysis_results(self, external_id):
         self.authenticate_if_needed()
         res = requests.get(
-            f"{self.base_url}/partner-api/v1/analysis/jobs/external_id={external_id}",
+            f"{self.base_url}/partner-api/v1/analysis/jobs/{external_id}",
             headers=self.token_header)
-        self.check_req(f"Could not GET analysis results: {res.text}")
-        return res.json()
+        self.check_req(res, f"Could not GET analysis results: {res.text}")
+        return res
 
 
 matter_requester = MatterRequester()
-matter_requester.authenticate() # Auth on server boot.
-
-
-

@@ -33,7 +33,7 @@ def create_metric_handler():
         handle_generic_try_catch(E)   
 
 
-# Not exposed through API.
+### UNEXPOSED IN API ###
 def get_all_metrics_dict():
     cursor = mongo.db.metrics.find({})
     all_metrics = dict()

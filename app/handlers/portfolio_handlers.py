@@ -1,4 +1,5 @@
 import threading
+from utils.file_system_funcs import generate_random_id
 from models.analysis_entity import AnalysisEntity
 from models.portfolio_entity import PortfolioEntity
 from error_handling.DoLand_exceptions import *
@@ -7,8 +8,6 @@ from utils.responses import success_response
 import flask
 from utils.Matter_requester import matter_requester
 import json
-import random
-import string
 import time
 
 
@@ -23,7 +22,7 @@ def post_portfolio_handler():
             )
 
         sum_needed_fixing = portfolio.fix_sum()
-        external_id = generate_external_id()
+        external_id = generate_random_id()
         matter_requester.post_portfolio(json.dumps(portfolio.to_dict()), external_id)
 
         threading.Thread(target=handle_portfolio_upload, args=(external_id,)).start()
@@ -43,9 +42,8 @@ def post_portfolio_handler():
 
 
 
-###  Not exposed through API ####
-def generate_external_id():
-    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
+### UNEXPOSED IN API ###
+
 
 
 def handle_portfolio_upload(external_id):

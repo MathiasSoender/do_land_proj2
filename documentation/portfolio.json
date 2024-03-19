@@ -1,0 +1,17 @@
+{
+"holdings": [
+    {
+        "id_value": "US0378331005",
+        "weight": 0.123
+    },
+    {
+        "id_value": "US5949181045",
+        "weight": 0.06
+    },
+    {
+        "id_value": "LU1503114545",
+        "weight": 0.3
+    }
+    ],
+    "default_id_scheme": "ISIN"
+}

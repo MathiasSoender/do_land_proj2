@@ -1,5 +1,5 @@
 from flask import Flask
-from utils.db_connector import init_db
+from utils.db_utils import init_db
 from views.metrics_view import metric_views
 from views.portfolio_view import portfolio_views
 from views.analysis_view import analysis_views

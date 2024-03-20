@@ -1,6 +1,6 @@
 import flask
 from error_handling.DoLand_exceptions import *
-from utils.db_connector import mongo
+from utils.db_utils import mongo
 from models.metrics_entity import MetricEntity
 from utils.responses import success_response
 import flask
@@ -32,14 +32,3 @@ def create_metric_handler():
     except Exception as E:
         handle_generic_try_catch(E)   
 
-
-### UNEXPOSED IN API ###
-def get_all_metrics_dict():
-    cursor = mongo.db.metrics.find({})
-    all_metrics = dict()
-    for document in cursor:
-        metric = MetricEntity(**document)
-        if metric.metric_id in all_metrics:
-            continue
-        all_metrics[metric.metric_id] = metric    
-    return all_metrics

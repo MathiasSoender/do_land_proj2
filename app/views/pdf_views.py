@@ -1,5 +1,5 @@
 from flask import Blueprint
-from handlers.pdf_handlers import *
+from handlers.pdf.pdf_handlers import *
 
 pdf_views = Blueprint("pdf_views", __name__)
 

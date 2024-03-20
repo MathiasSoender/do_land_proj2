@@ -1,5 +1,5 @@
 from flask import Blueprint
-from handlers.analysis_handlers import *
+from handlers.analysis.analysis_handlers import *
 
 analysis_views = Blueprint("analysis_views", __name__)
 

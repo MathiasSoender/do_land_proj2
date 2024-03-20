@@ -35,7 +35,7 @@ class AnalysisEntity:
         self.analysis = {"basic": new_basics}
 
     # Placeholder document, for denoting failed creations
-    def get_analysis_failed_placeholder(external_id):
+    def analysis_failed_placeholder(external_id):
         return AnalysisEntity(
             created=None,
             external_id=external_id,
@@ -55,6 +55,20 @@ class AnalysisEntity:
             matched_basic = all_metrics_dict.get(basic["metric_id"])
             basic["metric_name"] = matched_basic.metric_name
             basic["metric_unit"] = matched_basic.metric_unit
+
+    def get_metric_type_sum(self, metric_type):
+        return sum(
+            float(basic["metric_value"]["raw"])
+            for basic in self.analysis["basic"]
+            if basic["metric_type"] == metric_type
+        )
+
+    def get_metric_type_count(self, metric_type):
+        return sum(
+            float(basic["coverage"]["entity_count"])
+            for basic in self.analysis["basic"]
+            if basic["metric_type"] == metric_type
+        )
 
     def get_metric_type_sum_and_count(self, metric_type):
         metric_val_raw = 0

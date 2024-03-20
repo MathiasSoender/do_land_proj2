@@ -1,5 +1,5 @@
 # DoLand x Matter microservice
-The purpose of this microservice is to provide a data handler between Matter and Doland.
+The purpose of this microservice is to provide a data handler between Matter and Doland, and generate impact reports.
 
 ## Build commands
 

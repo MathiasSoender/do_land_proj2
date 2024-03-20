@@ -30,12 +30,12 @@ Again, the backend is available on localhost:80. Do not try to run the docker co
 ### Endpoint details
 1. GET / : Retreives a list of all analysis created, with full information. An analysis which have just been created will probably not show (async, it takes around 2s for an analysis to be created from a portfolio)
 
-2. POST / : Must be same format as explained in Matter API. Returns an ID which corresponds to the analysis created from the posted portfolio.
+2. POST / : Must be same format as explained in Matter API. Returns an ID which corresponds to the analysis created from the posted portfolio. This ID corresponds to the {analysis_id} below.
 
-3. GET /{analysis_id} : Must use above returned ID as analysis_id.
+3. GET /{analysis_id} : Must use above returned ID as analysis_id. This returns the metrics which have metric_value.raw > 0 or coverage.entity_count > 0. See below note.
 
-4. GET /{analysis_id}/{metric_type} : Returns the sum of raw values, and the count is returned by coverage.entity_count (summed)
+4. GET /{analysis_id}/{metric_type} : Returns the sum of metric_value.raw for the given metric_type, and the count is computed and returned by summing over coverage.entity_count. 
 
 
-Important: Metrics of an analysis are NOT saved if raw weight is 0 AND coverage.entity_count is 0!
+*Important*: Metrics of an analysis are NOT saved if metric_value.raw is 0 AND coverage.entity_count is 0. Why? I saw that each analysis contains all metrics (988 to date). That is also why I look in the coverage.entity_count for computing "the count of objects associated with the specified metric type", as this is my best understanding at the given time.
  

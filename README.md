@@ -27,7 +27,7 @@ docker start do-land-container
 Again, the backend is available on localhost:80. Do not try to run the docker container and debug locally at the same time - this wont work.
 
 ### Swagger
-Access Swagger by going to localhost:80/swagger. The swagger documentation is fairly limited, but the functionality should be available.
+Access Swagger by going to http://localhost:80/swagger. The swagger documentation is fairly limited, but the functionality should be available.
 
 
 ### Endpoint details

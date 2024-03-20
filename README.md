@@ -39,3 +39,8 @@ Again, the backend is available on localhost:80. Do not try to run the docker co
 
 *Important*: Metrics of an analysis are NOT saved if metric_value.raw is 0 AND coverage.entity_count is 0. Why? I saw that each analysis contains all metrics (988 to date). That is also why I look in the coverage.entity_count for computing "the count of objects associated with the specified metric type", as this is my best understanding at the given time.
  
+ There are also 2 other endpoints, 
+ 1. POST /metric : Create a metric in the database.
+ 2. GET /metric/{metric_id} : Gets a metric with specific metrid_id.
+
+ Future work would be to keep this Database synced with Matter (scheduler).

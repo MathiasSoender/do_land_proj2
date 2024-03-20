@@ -1,0 +1,198 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "DoLand X Matter API",
+        "description": "API documentation for DoLand and Matter API."
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "summary": "Gets all valid analysis.",
+                "responses": {
+                    "200": {
+                        "description": "A list of analysis."
+                    }
+                }
+            },
+            "post": {
+                "summary": "Post a new portfolio",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/PortfolioInput"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Portfolio successfully posted"
+                    }
+                }
+            }
+        },
+        "/{analysis_id}": {
+            "get": {
+                "summary": "Get metrics of a specific analysis",
+                "parameters": [
+                    {
+                        "name": "analysis_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the analysis",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details of the analysis."
+                    }
+                }
+            }
+        },
+        "/{analysis_id}/{metric_type}": {
+            "get": {
+                "summary": "Get sum of metric_value.raw for the given metric_type and count, which is computed by summing over coverage.entity_count.",
+                "parameters": [
+                    {
+                        "name": "analysis_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the analysis",
+                        "type": "string"
+                    },
+                    {
+                        "name": "metric_type",
+                        "in": "path",
+                        "required": true,
+                        "description": "the metric type",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details of the analysis by metric type."
+                    }
+                }
+            }
+        },
+        "/metric/{metric_id}": {
+            "get": {
+                "summary": "Get a specific metric",
+                "parameters": [
+                    {
+                        "name": "metric_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Metric ID",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details of the metric"
+                    }
+                }
+            }
+        },
+        "/metric": {
+            "post": {
+                "summary": "Create a new metric",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "The metric to create.",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "metric_id": {
+                                    "type": "string"
+                                },
+                                "metric_name": {
+                                    "type": "string"
+                                },
+                                "metric_unit": {
+                                    "type": "string"
+                                },
+                                "metric_type": {
+                                    "type": "string"
+                                },
+                                "metric_equation": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metric successfully created"
+                    }
+                }
+            }
+        },
+        "/pdf/{analysis_id}": {
+            "get": {
+                "summary": "Get PDF with details regarding metrics usage, of a specific analysis",
+                "parameters": [
+                    {
+                        "name": "analysis_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the analysis",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "PDF of the analysis"
+                    }
+                }
+            }
+        }
+        
+    },
+    "definitions": {
+        "PortfolioInput": {
+            "type": "object",
+            "properties": {
+                "holdings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Holding"
+                    }
+                },
+                "default_id_scheme": {
+                    "type": "string",
+                    "example": "ISIN"
+                }
+            },
+            "required": [
+                "holdings",
+                "default_id_scheme"
+            ]
+        },
+        "Holding": {
+            "type": "object",
+            "properties": {
+                "id_value": {
+                    "type": "string",
+                    "example": "US5949181045"
+                },
+                "weight": {
+                    "type": "number",
+                    "format": "double",
+                    "example": 0.5
+                }
+            },
+            "required": [
+                "id_value"
+            ]
+        }
+    }
+}

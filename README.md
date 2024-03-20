@@ -43,6 +43,7 @@ Again, the backend is available on localhost:80. Do not try to run the docker co
  There are also 2 other endpoints
  1. POST /metric : Create a metric in the database.
  2. GET /metric/{metric_id} : Gets a metric with specific metrid_id.
+ 3. /swagger : Swagger documentation.
 
 ### Future work
 

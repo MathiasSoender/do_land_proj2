@@ -5,3 +5,4 @@ flask==3.0.2
 reportlab==4.1.0
 flask_pymongo==2.3.0
 requests==2.31.0
+flask_swagger_ui==4.11.1

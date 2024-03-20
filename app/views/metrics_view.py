@@ -1,7 +1,7 @@
 from flask import Blueprint
 from handlers.metrics.metrics_handlers import *
 
-metric_views = Blueprint("metric_views", __name__)
+metric_views = Blueprint("metric_views", __name__, url_prefix="/metric")
 
 @metric_views.route('/<metric_id>', methods=["GET"])
 def get_metric(metric_id):

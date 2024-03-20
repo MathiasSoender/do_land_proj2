@@ -30,7 +30,6 @@ def post_portfolio_handler():
             f"{' Missing weights were set automatically.' if sum_needed_fixing else ''}",
             data = {"analysis_id" : external_id}
         )
-        # mongo.db.analysis.insert_one(metric.to_dict())
 
     except Exception as E:
         handle_generic_try_catch(E)

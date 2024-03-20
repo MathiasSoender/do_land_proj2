@@ -24,7 +24,7 @@ def create_metric_handler():
         new_metric_data = flask.request.json
         try:
             metric = MetricEntity(**new_metric_data) # Ensures that format is correct.
-        except TypeError:
+        except TypeError as E:
             raise DoLandBadReqException(f"The provided input was not formatted correctly.")
 
         mongo.db.metrics.insert_one(metric.to_dict())

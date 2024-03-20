@@ -26,6 +26,9 @@ docker start do-land-container
 
 Again, the backend is available on localhost:80. Do not try to run the docker container and debug locally at the same time - this wont work.
 
+### Swagger
+Access Swagger by going to localhost:80/swagger. The swagger documentation is fairly limited, but the functionality should be available.
+
 
 ### Endpoint details
 1. GET / : Retreives a list of all analysis created, with full information. An analysis which have just been created will probably not show (async, it takes around 2s for an analysis to be created from a portfolio)
@@ -43,11 +46,12 @@ Again, the backend is available on localhost:80. Do not try to run the docker co
  There are also 2 other endpoints
  1. POST /metric : Create a metric in the database.
  2. GET /metric/{metric_id} : Gets a metric with specific metrid_id.
- 3. /swagger : Swagger documentation.
 
 ### Future work
 
 1. Keep the Metrics database synced with Matter (scheduler).
 2. More error handling (repeated ISIN? bad ISIN? Why did an analysis fail?)
 3. PDF Beautify
-4. Deployment (Works on my machine!)
+4. Deployment
+5. Include a better swagger lib, for more automated documentation
+6. Object handling. Move away from native python classes, use dataclasses or something like marshmallow (could also introduce mongoDB schemas?) 

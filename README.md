@@ -36,6 +36,7 @@ Again, the backend is available on localhost:80. Do not try to run the docker co
 
 4. GET /{analysis_id}/{metric_type} : Returns the sum of metric_value.raw for the given metric_type, and the count is computed and returned by summing over coverage.entity_count. 
 
+5. GET /pdf/{analysis_id} : Returns the PDF built on information from 3. and 4.
 
 *Important*: Metrics of an analysis are NOT saved if metric_value.raw is 0 AND coverage.entity_count is 0. Why? I saw that each analysis contains all metrics (988 to date). That is also why I look in the coverage.entity_count for computing "the count of objects associated with the specified metric type", as this is my best understanding at the given time.
  
@@ -43,4 +44,4 @@ Again, the backend is available on localhost:80. Do not try to run the docker co
  1. POST /metric : Create a metric in the database.
  2. GET /metric/{metric_id} : Gets a metric with specific metrid_id.
 
- Future work would be to keep this Database synced with Matter (scheduler).
+ Future work would be to keep this Database synced with Matter (scheduler). Future work would also include more error handling (repeated ISIN? bad ISIN? Why did an analysis fail?), PDF beautifying and deployment. 

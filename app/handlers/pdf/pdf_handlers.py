@@ -1,5 +1,6 @@
 import threading
 from flask import send_file
+from handlers.analysis.helpers import check_if_analysis_exists
 from handlers.pdf.helpers import generate_df_for_pdf
 from error_handling.DoLand_exceptions import *
 from utils.file_system_funcs import *
@@ -10,6 +11,7 @@ from reportlab.platypus import SimpleDocTemplate, Table
 def get_pdf_handler(analysis_id):
     tmp_pdf_filepath = ""
     try:
+        check_if_analysis_exists(analysis_id)
         tmp_pdf_dir = get_temp_dir()
         ensure_dir_exists(tmp_pdf_dir)
         tmp_pdf_filepath = os.path.join(

@@ -56,26 +56,3 @@ class AnalysisEntity:
             basic["metric_name"] = matched_basic.metric_name
             basic["metric_unit"] = matched_basic.metric_unit
 
-    def get_metric_type_sum(self, metric_type):
-        return sum(
-            float(basic["metric_value"]["raw"])
-            for basic in self.analysis["basic"]
-            if basic["metric_type"] == metric_type
-        )
-
-    def get_metric_type_count(self, metric_type):
-        return sum(
-            float(basic["coverage"]["entity_count"])
-            for basic in self.analysis["basic"]
-            if basic["metric_type"] == metric_type
-        )
-
-    def get_metric_type_sum_and_count(self, metric_type):
-        metric_val_raw = 0
-        coverage_entity_count = 0
-        for basic in self.analysis["basic"]:
-            if basic["metric_type"] == metric_type:
-                metric_val_raw += float(basic["metric_value"]["raw"])
-                coverage_entity_count += float(basic["coverage"]["entity_count"])
-
-        return metric_val_raw, coverage_entity_count

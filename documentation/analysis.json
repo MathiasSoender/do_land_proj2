@@ -7,7 +7,6 @@
     "basic": [
       {
         "metric_id": "18f77330-611a-47d4-b80c-1b674728500a",
-        "metric_name": "EXTRACTIVE_ACTIVITIES_NEGATIVE_PRODUCT_E_TIER_3",
         "metric_value": {
           "raw": 0,
           "extrapolated": 0
@@ -16,7 +15,6 @@
           "weight": 0.0,
           "entity_count": 0
         },
-        "metric_unit": "",
         "metric_type": "flag"
       },
       {
